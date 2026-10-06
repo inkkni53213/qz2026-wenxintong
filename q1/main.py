@@ -17,7 +17,13 @@ try:
                 if not line:
                     continue
 
-try:
+                try:
                     log_data = json.loads(line)
                 except json.JSONDecodeError:
                     continue
+
+                result["total"] += 1
+                
+                level = log_data.get("level")
+                user = log_data.get("user")
+                message = log_data.get("message")
