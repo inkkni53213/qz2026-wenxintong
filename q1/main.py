@@ -27,3 +27,12 @@ try:
                 level = log_data.get("level")
                 user = log_data.get("user")
                 message = log_data.get("message")
+
+                if level:
+                    result["by_level"][level] = result["by_level"].get(level, 0) + 1
+                
+                if user:
+                    result["by_user"][user] = result["by_user"].get(user, 0) + 1
+                
+                if level == "ERROR":
+                    result["last_error"] = message
