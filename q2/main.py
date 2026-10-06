@@ -21,3 +21,17 @@ class UserManager:
             if user["id"] == user_id:
                 return user
         return None
+
+    def update_age(self, user_id, new_age):
+        user = self.get_user(user_id)
+        if user is not None:
+            user["age"] = new_age
+            return True
+        return False
+
+    def remove_user(self, user_id):
+        user = self.get_user(user_id)
+        if user is not None:
+            self.users.remove(user)
+            return True
+        return False
