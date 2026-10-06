@@ -16,3 +16,8 @@ try:
                 
                 if not line:
                     continue
+
+try:
+                    log_data = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
