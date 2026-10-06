@@ -203,12 +203,15 @@ logs = [
 3. 解释为什么第 2 问不能直接用 `len(logs)` 得到结果，需要什么遍历结构？
 
 （在此作答）
-1.[log for log in logs if log["level"] == "ERROR"]
-2.user_counts = {}
+- 1.[log for log in logs if log["level"] == "ERROR"]
+2.
+```python
+user_counts = {}
 for log in logs:
     user = log["user"]
     user_counts[user] = user_counts.get(user, 0) + 1
-3.len计算的是log里的总元素数量，而非某个元素出现的次数；用for循环进行遍历，key存储用户名，value记录次数。
+```
+- 3.len计算的是log里的总元素数量，而非某个元素出现的次数；用for循环进行遍历，key存储用户名，value记录次数。
 ### 第 3 题：异常处理设计
 
 Day_10 中你写过 `safe_int(s)` 函数：能转就返回整数，不能转就返回 `None`。
@@ -223,3 +226,15 @@ Day_10 中你写过 `safe_int(s)` 函数：能转就返回整数，不能转就�
 请写出函数代码，并说明：为什么这里用 `try/except` 比先用 `if` 判断再计算更好？
 
 （在此作答）
+```python
+def safe_divide(a, b):
+    try:
+        num_a = float(a)
+        num_b = float(b)
+        return num_a / num_b
+    except ValueError:
+        return None
+    except ZeroDivisionError:
+        return None
+```
+- 用if判断需要先判断大量条件，而try/except可以假设代码能正常运行
