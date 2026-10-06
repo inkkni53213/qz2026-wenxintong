@@ -35,3 +35,18 @@ class UserManager:
             self.users.remove(user)
             return True
         return False
+
+    def list_users(self):
+        return self.users
+
+    def save_to_json(self, filepath):
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(self.users, f, ensure_ascii=False, indent=4)
+
+    def load_from_json(self, filepath):
+        if not os.path.exists(filepath):
+            return
+
+        with open(filepath, "r", encoding="utf-8") as f:
+            loaded_data = json.load(f)
+            self.users = loaded_data
