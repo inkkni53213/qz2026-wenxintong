@@ -36,3 +36,12 @@ try:
                 
                 if level == "ERROR":
                     result["last_error"] = message
+
+    except FileNotFoundError:
+        pass 
+
+    return result
+
+if __name__ == "__main__":
+    print(analyze_log("app.jsonl"))
+
