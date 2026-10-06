@@ -50,3 +50,9 @@ class UserManager:
         with open(filepath, "r", encoding="utf-8") as f:
             loaded_data = json.load(f)
             self.users = loaded_data
+
+        if self.users:
+            max_id = max(user["id"] for user in self.users)
+            self.next_id = max_id + 1
+        else:
+            self.next_id = 1
